@@ -1,6 +1,6 @@
 /*
 	
-	Approach: DFS (Depth First Search)
+	Approach: DFS (Depth First Search) with Recursion
 
 	For example, given the following binary tree:
 
@@ -27,11 +27,11 @@ public class BinaryTreePaths
             return result;
         
         int cntr = sb.length();
-        if(root.left == null && root.right == null)
+        if(root.left == null && root.right == null) // found leaf
         {
             sb.append(root.val);
-            result.add(sb.toString());
-            sb.delete(cntr,sb.length());
+            result.add(sb.toString()); // add one of the paths
+            sb.delete(cntr,sb.length()); // delete most recent node
         }    
         if(root.left != null)
         {
