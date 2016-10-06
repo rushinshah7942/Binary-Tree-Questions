@@ -9,10 +9,12 @@
  */
  
 // Recursive Solution 
+// O(n) time
+// O(n) space - as stack frames for each of the left and right node of root for every subtrees
+
 public class Inorder 
 {   
-    List<Integer> result = new ArrayList<Integer>();
- 
+    List<Integer> result = new ArrayList<Integer>(); 
     public List<Integer> inorderTraversal(TreeNode root) 
     {
         if(root !=null)
