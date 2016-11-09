@@ -1,9 +1,8 @@
 // Iterative solution
 // Concept: DFS (Depth First Search)
 
-
 // O(n) time
-// O(n) space - as using stack
+// O(h) space - as using stack
 public List<Integer> inorderTraversal(TreeNode root) 
 {	
     List<Integer> result = new ArrayList<Integer>(); 
@@ -13,31 +12,45 @@ public List<Integer> inorderTraversal(TreeNode root)
 	Stack<TreeNode> stack = new Stack<TreeNode>();
     stack.push(root);
  
-    while(!stack.isEmpty())
-	{
-        TreeNode top = stack.peek();
-		
+    while(!stack.isEmpty()){
+        TreeNode top = stack.peek();		
 		// Find left child first it exists
-        if(top.left!=null)
-		{
+        if(top.left!=null){
             stack.push(top.left);
             top.left=null;
 			// as we won't be accessing it again
-        }
-		else
-		{
+        }else{
 			// add node value 
             result.add(top.val);
             stack.pop();
-            if(top.right!=null)
-			{
+            if(top.right!=null){
                 stack.push(top.right);
             }
         }
     }
- 
     return result;
 }
+
+// Without making left as null
+public List<Integer> inorderTraversal(TreeNode root){
+	Stack<TreeNode> stack = new Stack<TreeNode>();
+	TreeNode node = root;
+	while(true){
+		if(node != null){
+			stack.push(node);
+			node = node.left;
+		}
+		else{
+			if(stack.isEmpty()){
+				break;
+			}
+			node = stack.pop();
+			System.out.println(node.data);
+			node = node.right;
+		}
+	}
+}	
+ 
 
 // Morris Traversal 
 // O(n) time
