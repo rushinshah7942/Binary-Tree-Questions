@@ -68,6 +68,6 @@ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 	else if(root.val < Math.min(p.val,q.val)){
 		lowestCommonAncestor(root.right,p,q);
 	}
-	else	
+	else
 		return root;
 }

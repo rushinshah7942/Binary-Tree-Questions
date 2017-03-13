@@ -42,10 +42,11 @@ public class Solution
 	    	return;
 	    
 	    currentResult.add(root.val);
-	    if (root.left == null && root.right == null && sum == root.val) 
+
+	    if (root.left == null && root.right == null && sum == root.val) // found leaf 
 	    {
 		    result.add(new LinkedList(currentResult));
-		    currentResult.remove(currentResult.size()-1);//don't forget to remove the last integer
+		    currentResult.remove(currentResult.size()-1); //don't forget to remove the last integer
 		    return;
 	    } 
 	    else 
@@ -53,7 +54,8 @@ public class Solution
 	    	pathSum(root.left, sum - root.val, currentResult, result);
 	    	pathSum(root.right, sum - root.val, currentResult, result);
 	    }
-	    currentResult.remove(currentResult.size()-1);
+		
+	    currentResult.remove(currentResult.size()-1); //don't forget to remove the last integer
     }
 }
 
@@ -81,6 +83,7 @@ public void pathSum(TreeNode root, int sum, List<Integer>cur, List<List<Integer>
         return; 
     }
     cur.add(root.val);
+	
     if (root.left == null && root.right == null && root.val == sum){
         ret.add(new ArrayList(cur));
     }else{

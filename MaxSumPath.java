@@ -30,9 +30,9 @@ public int calculateSum(TreeNode root, int[] max)
 	int left = calculateSum(root.left, max);
 	int right = calculateSum(root.right, max);
  
-	int current = Math.max(root.val, Math.max(root.val + left, root.val + right));
+	int current = Math.max(root.val, Math.max( root.val + left ,  root.val + right ) ); // left or right 
  
-	max[0] = Math.max(max[0], Math.max(current, left + root.val + right));
+	max[0] = Math.max( max[0],  Math.max( current,  left + root.val + right) ); // including root as well 
  
 	return current;
 }
