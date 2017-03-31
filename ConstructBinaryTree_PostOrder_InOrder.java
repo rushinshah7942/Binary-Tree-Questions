@@ -2,6 +2,9 @@
 Given preorder and inorder traversal of a tree, construct the binary tree.
 */
 
+// Time : O(n^2) 
+// as we are doing traversal of both array internally
+
 public TreeNode buildTree(int[] inorder, int[] postorder) 
 {
 	int inStart = 0;
@@ -12,8 +15,7 @@ public TreeNode buildTree(int[] inorder, int[] postorder)
 	return buildTree(inorder, inStart, inEnd, postorder, postStart, postEnd);
 }
  
-public TreeNode buildTree(int[] inorder, int inStart, int inEnd,
-		int[] postorder, int postStart, int postEnd) 
+public TreeNode buildTree(int[] inorder, int inStart, int inEnd, int[] postorder, int postStart, int postEnd) 
 {
 	if (inStart > inEnd || postStart > postEnd)
 		return null;
@@ -21,7 +23,7 @@ public TreeNode buildTree(int[] inorder, int inStart, int inEnd,
 	int rootValue = postorder[postEnd];
 	TreeNode root = new TreeNode(rootValue);
  
-	int k = 0;
+	int k = 0; // to find root value index in inOrder array
 	for (int i = 0; i < inorder.length; i++) 
 	{
 		if (inorder[i] == rootValue) 
@@ -30,7 +32,9 @@ public TreeNode buildTree(int[] inorder, int inStart, int inEnd,
 			break;
 		}
 	}
- 
+	
+	// recursion
+	
 	root.left = buildTree(inorder, inStart, k - 1, postorder, postStart,
 			postStart + k - (inStart + 1));
 	// Becuase k is not the length, it it need to -(inStart+1) to get the length

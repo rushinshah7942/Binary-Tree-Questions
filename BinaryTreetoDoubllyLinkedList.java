@@ -9,6 +9,18 @@ The first node of Inorder traversal must be head node of the Circular List.
 
 // Reference: http://www.geeksforgeeks.org/convert-a-binary-tree-to-a-circular-doubly-link-list/
 
+// Node class represents a Node of a Tree
+class Node
+{
+    int val;
+    Node left,right;
+ 
+    public Node(int val)
+    {
+        this.val = val;
+        left = right = null;
+    }
+}
 
 public Node bTreeToCList(Node root)
 {
@@ -64,4 +76,13 @@ public Node concatenate(Node leftList,Node rightList)
 	// Return the Head of the List
 	return leftList;
 }
- 
+/*
+
+How to Concatenate two circular DLLs?
+--------------------------------------
+Get the last node of the left list. Retrieving the last node is an O(1) operation, since the prev pointer of the head points to the last node of the list.
+Connect it with the first node of the right list
+Get the last node of the second list
+Connect it with the head of the list. 
+
+*/

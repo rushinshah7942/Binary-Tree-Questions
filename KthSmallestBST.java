@@ -12,13 +12,16 @@ What if the BST is modified (insert/delete operations) often and you need to fin
 
 // Find while doing inorder Traversal
 // O(n) - DFS
+
 public class Solution {
     int count = 0;
 	int current = 0;
+
 	public int kthSmallest(TreeNode root, int k) {
 		inOrderTraversal(root,k);
 		return current;
 	}
+
 	public void inOrderTraversal(TreeNode root, int k){
 		if(count==k) 
 			return;
@@ -44,8 +47,13 @@ public class Solution {
 
 // if k is in left substree, time complexity would be O(size of left subtree)
 // else, O(n)
+
+// Optimization
+// if there is no duplicate element then we can store BST node's value as key and number of nodes in its left-subtree as value and just use that value
+
 public int kthSmallest(TreeNode root, int k) {
 	int count = countNodes(root.left); // if we can keep track of elements in left subtree for each of the nodes, then O(height of tree)
+
 	if (k <= count) {
 		return kthSmallest(root.left, k);
 	} 
@@ -62,8 +70,6 @@ public int countNodes(TreeNode n) {
 	
 	return 1 + countNodes(n.left) + countNodes(n.right);
 }
-
-
 
 /*
 Reference: http://stackoverflow.com/questions/2329171/find-kth-smallest-element-in-a-binary-search-tree-in-optimum-way

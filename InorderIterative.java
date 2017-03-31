@@ -1,36 +1,6 @@
 // Iterative solution
 // Concept: DFS (Depth First Search)
 
-// O(n) time
-// O(h) space - as using stack
-public List<Integer> inorderTraversal(TreeNode root) 
-{	
-    List<Integer> result = new ArrayList<Integer>(); 
-	if(root==null) 
-        return result;
-    
-	Stack<TreeNode> stack = new Stack<TreeNode>();
-    stack.push(root);
- 
-    while(!stack.isEmpty()){
-        TreeNode top = stack.peek();		
-		// Find left child first it exists
-        if(top.left!=null){
-            stack.push(top.left);
-            top.left=null;
-			// as we won't be accessing it again
-        }else{
-			// add node value 
-            result.add(top.val);
-            stack.pop();
-            if(top.right!=null){
-                stack.push(top.right);
-            }
-        }
-    }
-    return result;
-}
-
 // Without making left as null
 public List<Integer> inorderTraversal(TreeNode root){
 	List<Integer> result = new ArrayList<Integer>(); 
@@ -38,6 +8,7 @@ public List<Integer> inorderTraversal(TreeNode root){
 	Stack<TreeNode> stack = new Stack<TreeNode>();
 	TreeNode node = root;
 	
+	// internally handles root == null condition
 	while(true){
 		if(node != null){
 			stack.push(node);
@@ -45,15 +16,15 @@ public List<Integer> inorderTraversal(TreeNode root){
 		}
 		else{
 			if(stack.isEmpty()){
-				break;
+				break; // exit point from inorderTraversal
 			}
-			node = stack.pop();
-			
+			node = stack.pop();			
+			result.add(node.val);// printing step
 			node = node.right;
 		}
 	}
+	return result;
 }	
- 
 
 // Morris Traversal 
 // O(n) time
@@ -95,3 +66,37 @@ public List<Integer> inorderTraversal(TreeNode root){
             }
         }
     } 
+
+// O(n) time
+// O(h) space - as using stack
+
+public List<Integer> inorderTraversal(TreeNode root) 
+{	
+    List<Integer> result = new ArrayList<Integer>(); 
+	if(root==null) 
+        return result;
+    
+	Stack<TreeNode> stack = new Stack<TreeNode>();
+    stack.push(root);
+ 
+    while(!stack.isEmpty()){
+        TreeNode top = stack.peek();		
+		// Find left child first it exists
+        if(top.left!=null){
+            stack.push(top.left);
+            top.left=null;
+			// as we won't be accessing it again
+        }else{
+			// add node value 
+            result.add(top.val);
+            stack.pop();
+            if(top.right!=null){
+                stack.push(top.right);
+            }
+        }
+    }
+    return result;
+}
+
+ 
+

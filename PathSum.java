@@ -21,10 +21,14 @@ public class Solution
         if (root == null)
 		    return false;
 		    
-	    if (root.val == sum && (root.left == null && root.right == null))
+	    if (root.val == sum && (root.left == null && root.right == null)) // we found leaf
 		    return true;
         
         return hasPathSum(root.left, sum - root.val)
 			    || hasPathSum(root.right, sum - root.val);
     }
 }
+
+// time O(n)
+// space o(log h) 
+// where h is height of the binary tree

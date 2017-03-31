@@ -7,7 +7,9 @@ Invert a binary tree.
   2     7
  / \   / \
 1   3 6   9
+
 to
+
      4
    /   \
   7     2
@@ -60,6 +62,8 @@ public class Solution
 		{
 			// below 4 lines are important
             TreeNode node = stack.pop();
+			
+			// keep swaping left and right sub-tree
             TreeNode left = node.left;
             node.left = node.right;
             node.right = left;

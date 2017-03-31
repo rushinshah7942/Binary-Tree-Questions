@@ -15,6 +15,8 @@ Note: next() and hasNext() should run in average O(1) time and uses O(h) memory,
  *     TreeNode(int x) { val = x; }
  * }
  */
+ 
+// Space : O(h) as stack can contain atmost either side of sub-tree of root which is height of just one sub-tree 
 
 public class BSTIterator 
 {
@@ -24,6 +26,7 @@ public class BSTIterator
     public BSTIterator(TreeNode root) 
     {
         stack = new Stack<TreeNode>();
+		// add all nodes in left-subtree
         while(root!=null)
         {
             stack.push(root);
@@ -45,6 +48,7 @@ public class BSTIterator
 		if (node.right != null) 
 		{
 			node = node.right;
+			// go to right and add all left children of that node
 			while (node != null) 
 			{
 				// everytime we include left children to get lowest value in BST
